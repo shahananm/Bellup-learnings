@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bellup | Fun 1-on-1 Online Tuition for Kids 🚀</title>
+  <meta name="description" content="Bellup is a premium individual online tuition platform for children. Discover personalized learning in Math, Science, English, and Coding with interactive lessons and expert tutors. Book a free trial today!">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Bubble Canvas & Particles -->
+  <div class="bubble-bg-container" id="bubble-bg"></div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#" class="logo-link" id="logo-link">
+        <!-- SVG BellUp Logo Recreation -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" class="bellup-logo-svg" id="bellup-logo">
+          <!-- Bell -->
+          <text x="10" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">Bell</text>
+          <!-- Stylized U (Open Book/Leaves) -->
+          <g transform="translate(92, 10)">
+            <!-- Left page/leaf outline -->
+            <path d="M 12 8 C 12 8, 2 6, 2 28 C 2 40, 16 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
+            <!-- Right page/leaf outline -->
+            <path d="M 28 8 C 28 8, 38 6, 38 28 C 38 40, 24 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
+            <!-- Inner page lines / book detail -->
+            <path d="M 2 28 C 2 34, 12 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M 38 28 C 38 34, 28 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+            <!-- Twin leaf curves representing growth/education -->
+            <path d="M 20 18 C 16 26, 4 28, 4 28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+            <path d="M 20 18 C 24 26, 36 28, 36 28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+          </g>
+          <!-- p -->
+          <text x="135" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">p</text>
+        </svg>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#why-choose" class="nav-link">Why Bellup</a>
+        <a href="#kids-zone" class="nav-link">Kids Zone 🎮</a>
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#testimonials" class="nav-link">Reviews</a>
+      </nav>
+
+      <div class="nav-cta-wrapper">
+        <a href="#booking-section" class="btn btn-primary nav-btn-cta">Book Free Trial</a>
+        <button class="hamburger-menu" id="hamburger-btn" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <!-- Mini logo -->
+      <span class="drawer-logo">Bellup 🚀</span>
+      <button class="close-drawer" id="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-links">
+      <a href="#why-choose" class="drawer-link">Why Bellup</a>
+      <a href="#kids-zone" class="drawer-link">Kids Zone 🎮</a>
+      <a href="#courses" class="drawer-link">Courses</a>
+      <a href="#how-it-works" class="drawer-link">How It Works</a>
+      <a href="#testimonials" class="drawer-link">Reviews</a>
+      <a href="#booking-section" class="btn btn-primary drawer-btn-cta">Book Free Trial</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge-tagline"><span class="badge-icon">🎓</span> 1-on-1 Online Individual Tuition</div>
+        <h1 class="hero-title">Fun learning. <br><span class="highlight-text-gradient">Amazing grades!</span> 🚀</h1>
+        <p class="hero-description">
+          We match your child with a friendly, certified tutor who adapts to their unique learning style. Watch their confidence and grades soar!
+        </p>
+        
+        <div class="hero-bullets">
+          <div class="bullet-item">
+            <span class="bullet-check"><i class="fa-solid fa-check"></i></span>
+            <span>Fun, Gamified Curriculum</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-check"><i class="fa-solid fa-check"></i></span>
+            <span>100% Focused 1-on-1 Lessons</span>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-check"><i class="fa-solid fa-check"></i></span>
+            <span>Flexible Scheduling for Parents</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#booking-section" class="btn btn-primary btn-large glow-effect">Book Free Trial Class <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#kids-zone" class="btn btn-secondary btn-large">Play Demo Game 🎮</a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="hero-trust">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <span>Loved by 10,000+ parents and kids!</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="mascot-orbit-wrapper">
+          <!-- Rotating Dash Orbit Rings -->
+          <div class="orbit-ring orbit-ring-outer"></div>
+          <div class="orbit-ring orbit-ring-inner"></div>
+          
+          <!-- Floating educational elements -->
+          <div class="floating-math-symbol float-item" style="top: 15%; left: 5%;"><i class="fa-solid fa-plus"></i></div>
+          <div class="floating-abc-symbol float-item" style="top: 8%; right: 12%;">Abc</div>
+          <div class="floating-star-symbol float-item" style="bottom: 12%; left: 8%;"><i class="fa-solid fa-star"></i></div>
+          <div class="floating-bulb-symbol float-item" style="bottom: 15%; right: 10%;"><i class="fa-solid fa-lightbulb"></i></div>
+          
+          <!-- Core Mascot Image -->
+          <div class="mascot-img-container shadow-glow">
+            <img src="assets/mascot.png" alt="Bellup Mascot Ollie the Owl" class="mascot-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Grid Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon icon-cyan"><i class="fa-solid fa-face-smile"></i></div>
+          <h3 class="stat-number" data-target="10000">0</h3>
+          <p class="stat-label">Happy Children</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-orange"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3 class="stat-number" data-target="500">0</h3>
+          <p class="stat-label">Certified Tutors</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-green"><i class="fa-solid fa-chart-line"></i></div>
+          <h3 class="stat-number" data-target="98">0</h3>
+          <p class="stat-label">Grade Improvement</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-yellow"><i class="fa-solid fa-heart"></i></div>
+          <h3 class="stat-number" data-target="4.9" data-decimals="1">0</h3>
+          <p class="stat-label">Trust Score (5★)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Bellup Section -->
+  <section id="why-choose" class="why-choose-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Why Kids Love Learning Here</span>
+        <h2 class="section-title">The Fun way to learn anything! ✏️</h2>
+        <p class="section-desc">Traditional tuition can be boring. Bellup transforms studying into an engaging, customized playground for success.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card tilt-card" style="--card-theme: #7C4DFF;">
+          <div class="feature-badge"><i class="fa-solid fa-user-astronaut"></i></div>
+          <h3 class="feature-title">1-on-1 Focus</h3>
+          <p class="feature-text">Just your child and their tutor. No distractions. The tutor matches your child's pace, answering every question patiently.</p>
+          <div class="card-glow-bg"></div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card tilt-card" style="--card-theme: #26A69A;">
+          <div class="feature-badge"><i class="fa-solid fa-palette"></i></div>
+          <h3 class="feature-title">Interactive Whiteboard</h3>
+          <p class="feature-text">Kids draw, drag-and-drop elements, and play interactive games on our digital whiteboard. Learning by doing!</p>
+          <div class="card-glow-bg"></div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card tilt-card" style="--card-theme: #FF7043;">
+          <div class="feature-badge"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h3 class="feature-title">Gamified Rewards</h3>
+          <p class="feature-text">Earn points, unlock fun avatars, and collect digital badges for completing assignments and getting answers right!</p>
+          <div class="card-glow-bg"></div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card tilt-card" style="--card-theme: #FDD835;">
+          <div class="feature-badge"><i class="fa-solid fa-handshake-angle"></i></div>
+          <h3 class="feature-title">Perfect Match</h3>
+          <p class="feature-text">We select a tutor based on your child's personality, interests, and educational gaps. Best friends make the best teachers!</p>
+          <div class="card-glow-bg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Kids Zone Section -->
+  <section id="kids-zone" class="kids-zone-section section-padding">
+    <div class="container">
+      <div class="quiz-container shadow-glow-accent">
+        <!-- Inside Quiz Box: Left side cartoon text, Right side Interactive Game -->
+        <div class="quiz-grid">
+          <div class="quiz-intro-content">
+            <span class="badge-kids-tag">🌟 KIDS CHALLENGE ZONE</span>
+            <h2 class="quiz-title">Help Ollie find his <br><span class="gold-text">Genius Badge! 🦉</span></h2>
+            <p class="quiz-intro-text">
+              Solve these 3 quick puzzles to see how fun learning is with Bellup! If you get them all right, you'll win a special shiny badge!
+            </p>
+            <div class="mascot-bubble">
+              <div class="bubble-speech">
+                "You can do it! Let's solve them together!"
+              </div>
+              <div class="bubble-avatar-container">
+                <img src="assets/mascot.png" alt="Ollie" class="mini-mascot-img">
+              </div>
+            </div>
+          </div>
+
+          <!-- Quiz Interactive Panel -->
+          <div class="quiz-interactive-panel" id="quiz-panel">
+            
+            <!-- Progress Bar -->
+            <div class="quiz-progress-wrapper">
+              <div class="progress-steps-info">
+                <span>Question <strong id="current-q-num">1</strong> of 3</span>
+                <span id="score-info">Score: 0 XP</span>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="quiz-progress-fill" style="width: 33%;"></div>
+              </div>
+            </div>
+
+            <!-- Quiz Screen Content -->
+            <div class="quiz-question-box" id="quiz-question-box">
+              <h3 class="quiz-question" id="quiz-question-text">If you have 3 apples and Ollie gives you 4 more, how many apples do you have?</h3>
+              
+              <div class="quiz-options-list" id="quiz-options-list">
+                <!-- Buttons will be rendered dynamically by JS -->
+                <button class="quiz-option-btn" data-index="0">5 Apples</button>
+                <button class="quiz-option-btn" data-index="1">6 Apples</button>
+                <button class="quiz-option-btn" data-index="2">7 Apples</button>
+                <button class="quiz-option-btn" data-index="3">8 Apples</button>
+              </div>
+            </div>
+
+            <!-- Results Success Screen (Hidden by default) -->
+            <div class="quiz-success-screen hidden" id="quiz-success-screen">
+              <div class="badge-animation-container">
+                <!-- SVG Shiny Badge -->
+                <svg viewBox="0 0 100 100" class="genius-badge-svg" id="genius-badge">
+                  <defs>
+                    <linearGradient id="badge-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFD700" />
+                      <stop offset="50%" stop-color="#FFA500" />
+                      <stop offset="100%" stop-color="#FF8C00" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Outer glow -->
+                  <circle cx="50" cy="50" r="46" fill="rgba(255, 215, 0, 0.2)" stroke="#FFD700" stroke-width="2" stroke-dasharray="4,4" class="badge-glow" />
+                  <!-- Gold Star Outline Star shape -->
+                  <polygon points="50,5 63,33 95,38 71,60 78,92 50,77 22,92 29,60 5,38 37,33" fill="url(#badge-grad)" filter="drop-shadow(0px 4px 6px rgba(0,0,0,0.2))" />
+                  <!-- Inner badge detail -->
+                  <circle cx="50" cy="50" r="22" fill="#5E35B1" />
+                  <!-- Star Icon -->
+                  <path d="M50 40 L53 46 L60 47 L55 52 L56 59 L50 55 L44 59 L45 52 L40 47 L47 46 Z" fill="#FFFFFF" class="inner-star" />
+                </svg>
+              </div>
+              <h3 class="success-congrats">Hooray! You're a Genius! 🎉</h3>
+              <p class="success-message">You answered all questions correctly and unlocked the <strong>Bellup Junior Scholar Badge</strong>!</p>
+              
+              <div class="success-actions">
+                <button class="btn btn-primary glow-effect" onclick="restartQuiz()">Play Again 🔄</button>
+                <a href="#booking-section" class="btn btn-secondary-outline">Claim Free Trial Class 🎁</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase / Child Learning Highlight (Split Section) -->
+  <section class="learning-showcase-section section-padding">
+    <div class="container showcase-container">
+      <div class="showcase-visual">
+        <div class="showcase-img-wrapper shadow-glow">
+          <img src="assets/student_learning.png" alt="Happy student studying online with Bellup" class="showcase-img">
+          <!-- Glowing float card -->
+          <div class="floating-stat-sticker">
+            <span class="sticker-icon"><i class="fa-solid fa-bolt"></i></span>
+            <div class="sticker-details">
+              <strong>Interactive Whiteboard</strong>
+              <span>Real-time drawing & math tools!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-content">
+        <span class="subheading">Tailored For Young Minds</span>
+        <h2 class="section-title">Where active participation is key!</h2>
+        <p class="section-desc">
+          We don't do passive lectures. tutees interact directly with their tutor, draw diagrams together, and participate in lively learning games. This keeps kids engaged for the entire session!
+        </p>
+
+        <ul class="benefit-list">
+          <li>
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-text">
+              <h4>100% Safe Environment</h4>
+              <p>Lessons are recorded and monitored for safety and teaching quality checks.</p>
+            </div>
+          </li>
+          <li>
+            <div class="benefit-icon"><i class="fa-solid fa-gamepad"></i></div>
+            <div class="benefit-text">
+              <h4>Playful Practice Questions</h4>
+              <p>Practice sheets are structured like fun puzzles so they don't feel like boring homework.</p>
+            </div>
+          </li>
+          <li>
+            <div class="benefit-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="benefit-text">
+              <h4>Weekly Progress Reports</h4>
+              <p>Receive detailed session logs showing concept mastery and confidence scores.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses / Subjects Section -->
+  <section id="courses" class="courses-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading text-white-muted">Pick Your Path</span>
+        <h2 class="section-title text-white">Interactive Courses We Offer 📚</h2>
+        <p class="section-desc text-white-muted">Explore our curated curriculums designed to spark curiosity and build deep conceptual understanding.</p>
+      </div>
+
+      <!-- Course Level Select Tabs -->
+      <div class="tabs-container">
+        <button class="tab-btn active" data-tab="primary">Primary (G1-5)</button>
+        <button class="tab-btn" data-tab="middle">Middle School (G6-8)</button>
+        <button class="tab-btn" data-tab="high">High School (G9-12)</button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="tab-content-wrapper">
+        <!-- Primary Tab -->
+        <div class="tab-pane active" id="tab-primary">
+          <div class="courses-grid">
+            
+            <div class="course-card" style="--course-accent: #26A69A;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-calculator"></i></div>
+                <span class="course-age">Ages 6-10</span>
+              </div>
+              <h3 class="course-title">Playful Mathematics</h3>
+              <p class="course-desc">Counting, fractions, and multiplication using fun shapes, virtual blocks, and colorful puzzles.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-puzzle-piece"></i> Visual Math Props</span>
+                <span><i class="fa-solid fa-trophy"></i> Master Basic Arithmetic</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+            <div class="course-card" style="--course-accent: #FF7043;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-flask"></i></div>
+                <span class="course-age">Ages 6-10</span>
+              </div>
+              <h3 class="course-title">Little Scientists</h3>
+              <p class="course-desc">Introduction to nature, space, animals, and simple physical laws with interactive simulated experiments.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-microscope"></i> Interactive Simulations</span>
+                <span><i class="fa-solid fa-earth-americas"></i> Explore Nature & Space</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+            <div class="course-card" style="--course-accent: #7C4DFF;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-book-open"></i></div>
+                <span class="course-age">Ages 6-10</span>
+              </div>
+              <h3 class="course-title">Phonics & Creative Writing</h3>
+              <p class="course-desc">Building vocab, spelling fluency, and crafting stories through creative storytelling games.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-feather"></i> Story Builder Tool</span>
+                <span><i class="fa-solid fa-microphone"></i> Read Aloud Fun</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Middle Tab (Hidden by default) -->
+        <div class="tab-pane" id="tab-middle">
+          <div class="courses-grid">
+            
+            <div class="course-card" style="--course-accent: #26A69A;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-square-root-variable"></i></div>
+                <span class="course-age">Ages 11-13</span>
+              </div>
+              <h3 class="course-title">Pre-Algebra & Geometry</h3>
+              <p class="course-desc">Visualizing algebraic variables and discovering spatial geometries through digital geometric models.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-chart-simple"></i> Variable Visualizers</span>
+                <span><i class="fa-solid fa-compass"></i> Virtual Drafting Tools</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+            <div class="course-card" style="--course-accent: #FF7043;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-atom"></i></div>
+                <span class="course-age">Ages 11-13</span>
+              </div>
+              <h3 class="course-title">General Science Explorers</h3>
+              <p class="course-desc">Covering basic chemistry, physics, and cell biology concepts using 3D molecular constructs.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-dna"></i> 3D Bio Models</span>
+                <span><i class="fa-solid fa-vial-virus"></i> Lab Experiment Games</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+            <div class="course-card" style="--course-accent: #FDD835;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-code"></i></div>
+                <span class="course-age">Ages 10-13</span>
+              </div>
+              <h3 class="course-title">Junior Coding Adventures</h3>
+              <p class="course-desc">Introduction to computational logic using Scratch, block-based design, and basic Python animation.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-terminal"></i> Scratch & Python API</span>
+                <span><i class="fa-solid fa-gamepad"></i> Build Your Own Game</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- High School Tab (Hidden by default) -->
+        <div class="tab-pane" id="tab-high">
+          <div class="courses-grid">
+            
+            <div class="course-card" style="--course-accent: #26A69A;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-wave-square"></i></div>
+                <span class="course-age">Ages 14-18</span>
+              </div>
+              <h3 class="course-title">Calculus & Advanced Algebra</h3>
+              <p class="course-desc">Mastering complex derivatives, limits, and trigonometry with exam-oriented structured guidance.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-chart-line"></i> Graph Plotters</span>
+                <span><i class="fa-solid fa-file-pdf"></i> Exam Practice Papers</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+            <div class="course-card" style="--course-accent: #FF7043;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-magnet"></i></div>
+                <span class="course-age">Ages 14-18</span>
+              </div>
+              <h3 class="course-title">Physics & Chemistry Honors</h3>
+              <p class="course-desc">Advanced mechanics, electromagnetism, and organic chemistry concepts clarified individually.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-bolt"></i> Electricity simulators</span>
+                <span><i class="fa-solid fa-bezier-curve"></i> Chemical Formula Solver</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+            <div class="course-card" style="--course-accent: #7C4DFF;">
+              <div class="course-header">
+                <div class="course-icon"><i class="fa-solid fa-quote-left"></i></div>
+                <span class="course-age">Ages 14-18</span>
+              </div>
+              <h3 class="course-title">English Literature & SAT Prep</h3>
+              <p class="course-desc">Perfecting essay-writing, literary critique, and analytical reading strategies for major board exams.</p>
+              <div class="course-features">
+                <span><i class="fa-solid fa-pen-nib"></i> Essay Critiques</span>
+                <span><i class="fa-solid fa-bullseye"></i> Goal-Oriented SAT Prep</span>
+              </div>
+              <a href="#booking-section" class="btn btn-card-action">Book Free Class</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works (Scroll Timeline) -->
+  <section id="how-it-works" class="how-it-works-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Simple Steps</span>
+        <h2 class="section-title">Starting learning is easy as 1-2-3! 🎯</h2>
+        <p class="section-desc">Get matched and ready to learn in less than 24 hours. Here's our simple path.</p>
+      </div>
+
+      <div class="timeline-container">
+        <!-- Connecting Animated Line -->
+        <div class="timeline-connecting-line" id="timeline-line">
+          <div class="timeline-line-fill" id="timeline-line-fill"></div>
+        </div>
+
+        <div class="timeline-steps">
+          <!-- Step 1 -->
+          <div class="timeline-step" id="step-1">
+            <div class="step-marker">1</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fa-solid fa-calendar-check"></i></div>
+              <h3>1. Book a Free Trial</h3>
+              <p>Use our quick interactive booking form below. Tell us your child's grade, target subjects, and availability.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-step" id="step-2">
+            <div class="step-marker">2</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
+              <h3>2. Perfect Match</h3>
+              <p>We'll match your child with a tutor who fits their personality and goals. We'll set up a 30-minute free trial video call.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-step" id="step-3">
+            <div class="step-marker">3</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fa-solid fa-face-laugh-beam"></i></div>
+              <h3>3. Start Learning & Growing</h3>
+              <p>If you love the trial class, choose a flexible monthly lesson package. No long contracts, cancel anytime!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutors Showcase Section -->
+  <section class="tutors-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Meet the Superheroes</span>
+        <h2 class="section-title">Tutors your child will love! 🦸‍♀️</h2>
+        <p class="section-desc">Our tutors are certified experts, background-checked, and trained to make online classes extremely friendly and supportive.</p>
+      </div>
+
+      <div class="tutors-grid">
+        <!-- Tutor 1 -->
+        <div class="tutor-card">
+          <div class="tutor-avatar-wrapper">
+            <div class="tutor-avatar-frame avatar-yellow">
+              <i class="fa-solid fa-user-tie tutor-placeholder-icon"></i>
+              <!-- Real character styling via styling elements -->
+              <div class="tutor-fun-accessory"><i class="fa-solid fa-headphones"></i></div>
+            </div>
+          </div>
+          <div class="tutor-info">
+            <h3 class="tutor-name">Tutor Emma</h3>
+            <span class="tutor-tag bg-cyan">Maths Explorer</span>
+            <p class="tutor-bio">"I love teaching math using virtual LEGO bricks and drawing games. My goal is to make algebra feel like a fun video game!"</p>
+            <div class="tutor-meta">
+              <span><i class="fa-solid fa-star text-star"></i> 5.0 (180+ lessons)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tutor 2 -->
+        <div class="tutor-card">
+          <div class="tutor-avatar-wrapper">
+            <div class="tutor-avatar-frame avatar-teal">
+              <i class="fa-solid fa-user-doctor tutor-placeholder-icon"></i>
+              <div class="tutor-fun-accessory"><i class="fa-solid fa-glasses"></i></div>
+            </div>
+          </div>
+          <div class="tutor-info">
+            <h3 class="tutor-name">Tutor Alex</h3>
+            <span class="tutor-tag bg-orange">Science Wizard</span>
+            <p class="tutor-bio">"From atoms to black holes, science is a giant detective mystery! We'll perform interactive simulations to uncover the truths."</p>
+            <div class="tutor-meta">
+              <span><i class="fa-solid fa-star text-star"></i> 4.9 (240+ lessons)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tutor 3 -->
+        <div class="tutor-card">
+          <div class="tutor-avatar-wrapper">
+            <div class="tutor-avatar-frame avatar-violet">
+              <i class="fa-solid fa-user-graduate tutor-placeholder-icon"></i>
+              <div class="tutor-fun-accessory"><i class="fa-solid fa-paint-brush"></i></div>
+            </div>
+          </div>
+          <div class="tutor-info">
+            <h3 class="tutor-name">Tutor Sofia</h3>
+            <span class="tutor-tag bg-purple">English & Coding Creator</span>
+            <p class="tutor-bio">"I help kids write their own animated stories and turn them into Scratch games. Let's make learning highly creative!"</p>
+            <div class="tutor-meta">
+              <span><i class="fa-solid fa-star text-star"></i> 5.0 (120+ lessons)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Parent & Kid Feedback</span>
+        <h2 class="section-title">Success stories from Bellup families 💛</h2>
+        <p class="section-desc">Read how individual attention transformed these kids' relationship with education.</p>
+      </div>
+
+      <div class="testimonials-carousel-wrapper">
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Liam used to cry before his weekly math tests. After just 4 sessions with Tutor Emma, he actually looks forward to math class! His grade went from a C to an A-!"
+            </p>
+            <div class="reviewer-info">
+              <div class="reviewer-initials initials-orange">SK</div>
+              <div class="reviewer-details">
+                <strong>Sarah K.</strong>
+                <span>Mother of Liam (Grade 4)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "The individual focus makes a huge difference. Ava was shy in school and wouldn't speak up. Her tutorSofia built a strong bond, now she is confidently writing short poems!"
+            </p>
+            <div class="reviewer-info">
+              <div class="reviewer-initials initials-teal">MD</div>
+              <div class="reviewer-details">
+                <strong>Mark D.</strong>
+                <span>Father of Ava (Grade 7)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form Wizard Section -->
+  <section id="booking-section" class="booking-section section-padding">
+    <div class="container">
+      <div class="booking-wrapper shadow-glow-accent">
+        
+        <!-- Booking Visual Left Side -->
+        <div class="booking-info-panel">
+          <span class="badge-white">🎁 LIMITED OFFER</span>
+          <h2>Get 1 Free Trial Lesson today!</h2>
+          <p>No credit card required. Experience a full 30-minute private class with our best tutor tailored to your child.</p>
+          
+          <ul class="booking-perks">
+            <li><span class="perk-icon"><i class="fa-solid fa-gift"></i></span> 30-Minute Free Session</li>
+            <li><span class="perk-icon"><i class="fa-solid fa-user-check"></i></span> Custom Tutor Matching</li>
+            <li><span class="perk-icon"><i class="fa-solid fa-clipboard-question"></i></span> Diagnostic Report Included</li>
+          </ul>
+
+          <div class="booking-urgency">
+            <i class="fa-regular fa-clock"></i> Slots are filling fast for this week!
+          </div>
+        </div>
+
+        <!-- Booking Form Right Side -->
+        <div class="booking-form-panel">
+          
+          <!-- Wizard Steps Indicator -->
+          <div class="wizard-steps-indicator">
+            <div class="wizard-step active" id="indicator-step-1">
+              <span class="indicator-number">1</span>
+              <span class="indicator-label">Grade</span>
+            </div>
+            <div class="wizard-line"></div>
+            <div class="wizard-step" id="indicator-step-2">
+              <span class="indicator-number">2</span>
+              <span class="indicator-label">Subject</span>
+            </div>
+            <div class="wizard-line"></div>
+            <div class="wizard-step" id="indicator-step-3">
+              <span class="indicator-number">3</span>
+              <span class="indicator-label">Contact</span>
+            </div>
+          </div>
+
+          <form id="booking-wizard-form" onsubmit="handleBookingSubmit(event)">
+            
+            <!-- Step 1: Grade Select -->
+            <div class="form-step-content" id="form-step-1">
+              <h3 class="form-step-title">Select your child's grade:</h3>
+              <div class="grid-options-container">
+                <label class="grid-option-label">
+                  <input type="radio" name="child_grade" value="Primary (G1-5)" checked>
+                  <div class="option-card">
+                    <span class="option-icon"><i class="fa-solid fa-child"></i></span>
+                    <strong>Primary School</strong>
+                    <span>Grade 1 - 5</span>
+                  </div>
+                </label>
+
+                <label class="grid-option-label">
+                  <input type="radio" name="child_grade" value="Middle School (G6-8)">
+                  <div class="option-card">
+                    <span class="option-icon"><i class="fa-solid fa-child-reaching"></i></span>
+                    <strong>Middle School</strong>
+                    <span>Grade 6 - 8</span>
+                  </div>
+                </label>
+
+                <label class="grid-option-label">
+                  <input type="radio" name="child_grade" value="High School (G9-12)">
+                  <div class="option-card">
+                    <span class="option-icon"><i class="fa-solid fa-user-graduate"></i></span>
+                    <strong>High School</strong>
+                    <span>Grade 9 - 12</span>
+                  </div>
+                </label>
+              </div>
+              <div class="form-navigation">
+                <span></span> <!-- Spacer -->
+                <button type="button" class="btn btn-primary" onclick="goToStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+
+            <!-- Step 2: Subject Select -->
+            <div class="form-step-content hidden" id="form-step-2">
+              <h3 class="form-step-title">What subject should we focus on?</h3>
+              <div class="grid-options-container">
+                <label class="grid-option-label">
+                  <input type="radio" name="child_subject" value="Mathematics" checked>
+                  <div class="option-card">
+                    <span class="option-icon icon-teal"><i class="fa-solid fa-calculator"></i></span>
+                    <strong>Mathematics</strong>
+                  </div>
+                </label>
+
+                <label class="grid-option-label">
+                  <input type="radio" name="child_subject" value="Science">
+                  <div class="option-card">
+                    <span class="option-icon icon-orange"><i class="fa-solid fa-flask"></i></span>
+                    <strong>Science</strong>
+                  </div>
+                </label>
+
+                <label class="grid-option-label">
+                  <input type="radio" name="child_subject" value="English & Writing">
+                  <div class="option-card">
+                    <span class="option-icon icon-purple"><i class="fa-solid fa-book-open"></i></span>
+                    <strong>English & Writing</strong>
+                  </div>
+                </label>
+
+                <label class="grid-option-label">
+                  <input type="radio" name="child_subject" value="Coding Basics">
+                  <div class="option-card">
+                    <span class="option-icon icon-yellow"><i class="fa-solid fa-code"></i></span>
+                    <strong>Coding Basics</strong>
+                  </div>
+                </label>
+              </div>
+              <div class="form-navigation">
+                <button type="button" class="btn btn-secondary-outline" onclick="goToStep(1)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="button" class="btn btn-primary" onclick="goToStep(3)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+
+            <!-- Step 3: Contact & Dates -->
+            <div class="form-step-content hidden" id="form-step-3">
+              <h3 class="form-step-title">Parent Contact Information:</h3>
+              
+              <div class="form-group-row">
+                <div class="form-input-group">
+                  <label for="parent_name" class="input-label">Parent's Full Name</label>
+                  <input type="text" id="parent_name" class="form-input" placeholder="e.g. John Doe" required>
+                </div>
+                <div class="form-input-group">
+                  <label for="parent_email" class="input-label">Email Address</label>
+                  <input type="email" id="parent_email" class="form-input" placeholder="e.g. parent@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-group-row">
+                <div class="form-input-group">
+                  <label for="parent_phone" class="input-label">Phone Number</label>
+                  <input type="tel" id="parent_phone" class="form-input" placeholder="e.g. +1 (123) 456-7890" required>
+                </div>
+                <div class="form-input-group">
+                  <label for="preferred_date" class="input-label">Preferred Start Date</label>
+                  <input type="date" id="preferred_date" class="form-input" required>
+                </div>
+              </div>
+
+              <div class="form-navigation">
+                <button type="button" class="btn btn-secondary-outline" onclick="goToStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="submit" class="btn btn-primary glow-effect">Finish Booking! 🎁</button>
+              </div>
+            </div>
+
+            <!-- Success Wizard Message (Hidden by default) -->
+            <div class="form-step-content hidden text-center" id="booking-success-message">
+              <div class="success-icon-badge"><i class="fa-solid fa-circle-check"></i></div>
+              <h3 class="success-congrats">Booking Successful! 🎉</h3>
+              <p class="success-message">
+                Thank you, <strong id="success-parent-name">Parent</strong>! We've received your request to start <strong id="success-subject">Subject</strong> tuition for your child.
+              </p>
+              <p class="success-email-alert">
+                We sent a confirmation email to <strong id="success-email">email@address.com</strong>. One of our course advisors will call/message you shortly to confirm your tutor match details!
+              </p>
+              <button type="button" class="btn btn-primary" onclick="restartBookingWizard()">Book Another Class 🔄</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <!-- Footer Col 1: Logo and Pitch -->
+      <div class="footer-col-about">
+        <a href="#" class="logo-link footer-logo-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" class="bellup-logo-svg footer-logo">
+            <text x="10" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">Bell</text>
+            <g transform="translate(92, 10)">
+              <path d="M 12 8 C 12 8, 2 6, 2 28 C 2 40, 16 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
+              <path d="M 28 8 C 28 8, 38 6, 38 28 C 38 40, 24 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
+              <path d="M 2 28 C 2 34, 12 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M 38 28 C 38 34, 28 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+            </g>
+            <text x="135" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">p</text>
+          </svg>
+        </a>
+        <p class="footer-desc">
+          Individual online tuition designed for children. We combine certified pedagogy with gamified whiteboard mechanics to inspire lifelong learning.
+        </p>
+        <div class="footer-social-links">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Footer Col 2: Navigation Links -->
+      <div class="footer-col-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#why-choose">Why Bellup</a></li>
+          <li><a href="#kids-zone">Kids Zone Puzzles</a></li>
+          <li><a href="#courses">Interactive Courses</a></li>
+          <li><a href="#how-it-works">How We Match</a></li>
+          <li><a href="#testimonials">Parent Testimonials</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Col 3: Subjects Links -->
+      <div class="footer-col-links">
+        <h4>Subjects</h4>
+        <ul>
+          <li><a href="#courses">Primary School Math</a></li>
+          <li><a href="#courses">Middle School Science</a></li>
+          <li><a href="#courses">English Creative Writing</a></li>
+          <li><a href="#courses">Scratch Coding Lessons</a></li>
+          <li><a href="#booking-section">Book a Free Trial</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Col 4: Newsletter / Contact -->
+      <div class="footer-col-contact">
+        <h4>Weekly Free Learning Worksheets</h4>
+        <p>Get fun educational worksheets sent to your email every week!</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!'); this.reset();">
+          <input type="email" placeholder="Your Email Address" required class="newsletter-input" aria-label="Newsletter email">
+          <button type="submit" class="btn btn-primary btn-newsletter" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <div class="footer-contact-details">
+          <span><i class="fa-solid fa-envelope"></i> contact@bellup.com</span>
+          <span><i class="fa-solid fa-phone"></i> +1 (800) 555-BELL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Bellup Platform. All rights reserved. Made with love for kids everywhere. 🌟</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Preferences</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP Animation Library CDNs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="app.js"></script>
+</body>
+</html>

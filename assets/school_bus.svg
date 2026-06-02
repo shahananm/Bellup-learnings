@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Bus hood bumper -->
+  <path d="M 27 15 L 29 15 C 30 15, 30 22, 29 22 L 27 22 Z" fill="#424242" />
+  <!-- Bus body main shape -->
+  <rect x="2" y="8" width="25" height="15" rx="3" fill="#FFD54F" stroke="#F57F17" stroke-width="1.5" />
+  <!-- Windshield & Side Windows -->
+  <rect x="21" y="10" width="4" height="6" rx="1" fill="#E0F7FA" stroke="#00ACC1" stroke-width="1" />
+  <rect x="15" y="10" width="4" height="6" rx="1" fill="#E0F7FA" stroke="#00ACC1" stroke-width="1" />
+  <rect x="9" y="10" width="4" height="6" rx="1" fill="#E0F7FA" stroke="#00ACC1" stroke-width="1" />
+  <rect x="3" y="10" width="4" height="6" rx="1" fill="#E0F7FA" stroke="#00ACC1" stroke-width="1" />
+  <!-- Black horizontal stripe -->
+  <line x1="2" y1="18" x2="27" y2="18" stroke="#212121" stroke-width="1.5" />
+  <!-- Headlight (orange) and Taillight (red) -->
+  <circle cx="26" cy="20" r="1.5" fill="#FF8F00" />
+  <circle cx="3" cy="20" r="1.5" fill="#E53935" />
+  <!-- Wheels -->
+  <circle cx="8" cy="23" r="3.5" fill="#212121" stroke="#FFFFFF" stroke-width="0.75" />
+  <circle cx="20" cy="23" r="3.5" fill="#212121" stroke="#FFFFFF" stroke-width="0.75" />
+</svg>
