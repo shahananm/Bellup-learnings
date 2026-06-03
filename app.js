@@ -1018,6 +1018,54 @@ function initChildrenPlayground() {
     });
   });
 
+  // Handle touch events for mobile devices
+  canvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      const touchX = touch.clientX - rect.left;
+      const touchY = touch.clientY - rect.top;
+
+      if (touchX >= 0 && touchX <= width && touchY >= 0 && touchY <= height) {
+        ball.x = touchX;
+        ball.y = touchY;
+        ball.vx = (Math.random() - 0.5) * 8;
+        ball.vy = -4;
+        ball.active = true;
+
+        for (let i = 0; i < 8; i++) {
+          particles.push(new BurstParticle(touchX, touchY, "#FFD700"));
+        }
+
+        const randomChild = children[Math.floor(Math.random() * children.length)];
+        const callouts = ["Look, a ball!", "Pass it here!", "Bouncy ball! ⚽"];
+        randomChild.say(callouts[Math.floor(Math.random() * callouts.length)]);
+      }
+    }
+  }, { passive: true });
+
+  canvas.addEventListener("touchmove", (e) => {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      const touchX = touch.clientX - rect.left;
+      const touchY = touch.clientY - rect.top;
+
+      if (touchX >= 0 && touchX <= width && touchY >= 0 && touchY <= height) {
+        children.forEach(child => {
+          if (Math.abs(child.x - touchX) < 45) {
+            if (!child.isWaving) {
+              child.isWaving = true;
+              child.say(Math.random() < 0.5 ? "Hello! 👋" : "Hi there!");
+            }
+          } else {
+            child.isWaving = false;
+          }
+        });
+      }
+    }
+  }, { passive: true });
+
   // Main Loop
   function loop() {
     // Clear and fill transparent/dark gradient
