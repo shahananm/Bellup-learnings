@@ -3,6 +3,32 @@
    Features: GSAP ScrollTrigger, Kids Zone Quiz, Booking Wizard, Floating Bubbles
    ========================================================================== */
 
+// Canvas roundRect Polyfill for compatibility with older mobile browsers/webviews
+if (typeof CanvasRenderingContext2D !== "undefined" && !CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+    if (typeof r === "undefined") r = 0;
+    if (typeof r === "number") {
+      r = { tl: r, tr: r, br: r, bl: r };
+    }
+    const tl = r.tl || 0;
+    const tr = r.tr || 0;
+    const br = r.br || 0;
+    const bl = r.bl || 0;
+    this.beginPath();
+    this.moveTo(x + tl, y);
+    this.lineTo(x + w - tr, y);
+    this.quadraticCurveTo(x + w, y, x + w, y + tr);
+    this.lineTo(x + w, y + h - br);
+    this.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+    this.lineTo(x + bl, y + h);
+    this.quadraticCurveTo(x, y + h, x, y + h - bl);
+    this.lineTo(x, y + tl);
+    this.quadraticCurveTo(x, y, x + tl, y);
+    this.closePath();
+    return this;
+  };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize background bubbles
   createBackgroundBubbles();
