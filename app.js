@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize Children Playground Canvas Animation
   initChildrenPlayground();
+
+  // Initialize Mobile Scooter Touch Cursor
+  initMobileCursorTouchTracker();
 });
 
 /* ==========================================================================
@@ -135,6 +138,12 @@ function initMouseParallax() {
 }
 
 function createSmokePuff(x, y) {
+  // Performance safeguard: prevent DOM lag on mobile by capping active smoke puffs
+  const maxPuffs = window.innerWidth < 768 ? 10 : 25;
+  if (document.querySelectorAll(".smoke-puff").length >= maxPuffs) {
+    return;
+  }
+
   const puff = document.createElement("div");
   puff.classList.add("smoke-puff");
 
@@ -155,6 +164,47 @@ function createSmokePuff(x, y) {
   setTimeout(() => {
     puff.remove();
   }, 800);
+}
+
+/* ==========================================================================
+   Mobile Touch Cursor Tracker (Child on Scooter with Helmet)
+   ========================================================================== */
+function initMobileCursorTouchTracker() {
+  const mobileCursor = document.getElementById("mobile-scooter-cursor");
+  if (!mobileCursor) return;
+
+  let lastTouchX = 0;
+  let lastTouchY = 0;
+
+  document.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    mobileCursor.style.opacity = "1";
+    mobileCursor.style.left = `${touch.pageX}px`;
+    mobileCursor.style.top = `${touch.pageY}px`;
+    lastTouchX = touch.pageX;
+    lastTouchY = touch.pageY;
+  }, { passive: true });
+
+  document.addEventListener("touchmove", (e) => {
+    const touch = e.touches[0];
+    mobileCursor.style.left = `${touch.pageX}px`;
+    mobileCursor.style.top = `${touch.pageY}px`;
+
+    // Smoke trail on touch movement (slightly wider distance limit to reduce CPU load)
+    const dist = Math.hypot(touch.pageX - lastTouchX, touch.pageY - lastTouchY);
+    if (dist > 25) {
+      createSmokePuff(touch.pageX, touch.pageY);
+      lastTouchX = touch.pageX;
+      lastTouchY = touch.pageY;
+    }
+  }, { passive: true });
+
+  document.addEventListener("touchend", () => {
+    // Fade out cursor when user lifts finger
+    setTimeout(() => {
+      mobileCursor.style.opacity = "0";
+    }, 300);
+  }, { passive: true });
 }
 
 /* ==========================================================================

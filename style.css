@@ -111,11 +111,11 @@ img {
    Background & Animated Particles
    ========================================================================== */
 .bubble-bg-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
@@ -2355,6 +2355,32 @@ h1, h2, h3, h4 {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Mobile-only scooter cursor display and tap highlight reset */
+.mobile-only-cursor {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only-cursor {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background-image: url('assets/toy_scooter_cursor.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-16px, -20px); /* Align with scooter handlebar hotspot (16,20) */
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  body, p, span, h1, h2, h3, h4, h5, h6, div, section, header, footer, img {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 
