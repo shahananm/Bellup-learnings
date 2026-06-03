@@ -26,26 +26,7 @@
   <header class="header">
     <div class="container nav-container">
       <a href="#" class="logo-link" id="logo-link">
-        <!-- SVG BellUp Logo Recreation -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" class="bellup-logo-svg" id="bellup-logo">
-          <!-- Bell -->
-          <text x="10" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">Bell</text>
-          <!-- Stylized U (Open Book/Leaves) -->
-          <g transform="translate(92, 10)">
-            <!-- Left page/leaf outline -->
-            <path d="M 12 8 C 12 8, 2 6, 2 28 C 2 40, 16 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
-            <!-- Right page/leaf outline -->
-            <path d="M 28 8 C 28 8, 38 6, 38 28 C 38 40, 24 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
-            <!-- Inner page lines / book detail -->
-            <path d="M 2 28 C 2 34, 12 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M 38 28 C 38 34, 28 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
-            <!-- Twin leaf curves representing growth/education -->
-            <path d="M 20 18 C 16 26, 4 28, 4 28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-            <path d="M 20 18 C 24 26, 36 28, 36 28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-          </g>
-          <!-- p -->
-          <text x="135" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">p</text>
-        </svg>
+        <img src="assets/Bellup_Secondary_Logo_Clean.png" alt="BellUp Your Learning Partner Logo" class="bellup-logo-img" id="bellup-logo">
       </a>
 
       <nav class="nav-menu" id="nav-menu">
@@ -145,6 +126,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <!-- Children's Playground Animated Canvas -->
+    <div class="playground-canvas-wrapper">
+      <canvas id="children-playground"></canvas>
     </div>
   </section>
 
@@ -835,7 +820,7 @@
               <div class="form-group-row">
                 <div class="form-input-group">
                   <label for="parent_phone" class="input-label">Phone Number</label>
-                  <input type="tel" id="parent_phone" class="form-input" placeholder="e.g. +1 (123) 456-7890" required>
+                  <input type="tel" id="parent_phone" class="form-input" placeholder="e.g. +91 90748 26232" required>
                 </div>
                 <div class="form-input-group">
                   <label for="preferred_date" class="input-label">Preferred Start Date</label>
@@ -875,25 +860,16 @@
       <!-- Footer Col 1: Logo and Pitch -->
       <div class="footer-col-about">
         <a href="#" class="logo-link footer-logo-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" class="bellup-logo-svg footer-logo">
-            <text x="10" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">Bell</text>
-            <g transform="translate(92, 10)">
-              <path d="M 12 8 C 12 8, 2 6, 2 28 C 2 40, 16 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
-              <path d="M 28 8 C 28 8, 38 6, 38 28 C 38 40, 24 43, 20 44 C 20 44, 20 30, 20 28" fill="#FF7043" />
-              <path d="M 2 28 C 2 34, 12 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M 38 28 C 38 34, 28 37, 20 38" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
-            </g>
-            <text x="135" y="42" font-family="'Fredoka', sans-serif" font-weight="700" font-size="34" fill="#ffffff">p</text>
-          </svg>
+          <img src="assets/Bellup_Secondary_Logo_Clean.png" alt="BellUp Your Learning Partner Logo" class="bellup-logo-img footer-logo">
         </a>
         <p class="footer-desc">
           Individual online tuition designed for children. We combine certified pedagogy with gamified whiteboard mechanics to inspire lifelong learning.
         </p>
         <div class="footer-social-links">
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="#" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
         </div>
       </div>
 
@@ -931,7 +907,7 @@
         </form>
         <div class="footer-contact-details">
           <span><i class="fa-solid fa-envelope"></i> contact@bellup.com</span>
-          <span><i class="fa-solid fa-phone"></i> +1 (800) 555-BELL</span>
+          <span><i class="fa-solid fa-phone"></i> <a href="tel:9074826232">+91 90748 26232</a></span>
         </div>
       </div>
     </div>

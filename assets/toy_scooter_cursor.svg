@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <!-- Scooter Deck -->
+  <path d="M18,48 L46,48" stroke="#7C4DFF" stroke-width="4" stroke-linecap="round" />
+  <!-- Scooter Handlebar Column -->
+  <path d="M22,26 L22,48" stroke="#7C4DFF" stroke-width="3" stroke-linecap="round" />
+  <!-- Handlebars crossbar -->
+  <path d="M16,26 L28,26" stroke="#7C4DFF" stroke-width="3" stroke-linecap="round" />
+  <circle cx="16" cy="26" r="2" fill="#00E5FF" />
+  <circle cx="28" cy="26" r="2" fill="#00E5FF" />
+  <!-- Front Wheel -->
+  <circle cx="22" cy="50" r="5" fill="#B3ADC8" stroke="#1E1233" stroke-width="1.5" />
+  <circle cx="22" cy="50" r="2" fill="#1E1233" />
+  <!-- Back Wheel (Exhaust area near here) -->
+  <circle cx="46" cy="50" r="5" fill="#B3ADC8" stroke="#1E1233" stroke-width="1.5" />
+  <circle cx="46" cy="50" r="2" fill="#1E1233" />
+
+  <!-- Child Body (wearing bright cyan shirt) -->
+  <path d="M28,32 Q32,32 32,38 L28,47" stroke="#00E5FF" stroke-width="6" stroke-linecap="round" fill="none" />
+  
+  <!-- Arms holding handlebar -->
+  <path d="M30,34 L22,26" stroke="#FFE082" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Leg on scooter -->
+  <path d="M30,38 L30,46" stroke="#FFE082" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Leg pushing/kicking back (Dynamic movement!) -->
+  <path d="M32,38 Q38,42 42,48" stroke="#FFE082" stroke-width="3.5" stroke-linecap="round" fill="none" />
+
+  <!-- Head (Skin Tone) -->
+  <circle cx="32" cy="20" r="6" fill="#FFE082" />
+  <!-- Eye -->
+  <circle cx="30" cy="19" r="1" fill="#1E1233" />
+  
+  <!-- Safety Helmet (Sunset Orange) -->
+  <path d="M25,18 A 7.5,7.5 0 0,1 39,18 Z" fill="#FF7043" />
+  <!-- Helmet Strap -->
+  <path d="M28,19 L32,26 L34,19" fill="none" stroke="#FF7043" stroke-width="1" />
+  <!-- Helmet Shield/Visor -->
+  <path d="M35,16 L39,18 L35,20 Z" fill="#00E5FF" opacity="0.8" />
+  
+  <!-- Exhaust pipe (Small pipe at back wheel to show smoke source) -->
+  <path d="M46,47 L52,45" stroke="#FDD835" stroke-width="2" stroke-linecap="round" />
+  <circle cx="52" cy="45" r="1.5" fill="#FF7043" />
+</svg>

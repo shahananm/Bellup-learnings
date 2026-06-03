@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize GSAP Animations
   initGsapAnimations();
+
+  // Initialize Children Playground Canvas Animation
+  initChildrenPlayground();
 });
 
 /* ==========================================================================
@@ -135,12 +138,14 @@ function createSmokePuff(x, y) {
   const puff = document.createElement("div");
   puff.classList.add("smoke-puff");
 
-  // Offset slightly down-left relative to the 16x16 center hotspot
-  puff.style.left = `${x - 16}px`;
-  puff.style.top = `${y + 8}px`;
+  // Offset to match the exhaust of the scooter cursor (which is at +22px X and +14px Y relative to the hotspot)
+  const xOffset = 22 + (Math.random() * 4 - 2); // add minor jitter
+  const yOffset = 14 + (Math.random() * 4 - 2);
+  puff.style.left = `${x + xOffset}px`;
+  puff.style.top = `${y + yOffset}px`;
 
   // Randomize initial smoke diameter slightly for organic texture
-  const size = Math.random() * 6 + 6; // 6px - 12px
+  const size = Math.random() * 8 + 6; // 6px - 14px
   puff.style.width = `${size}px`;
   puff.style.height = `${size}px`;
 
@@ -536,3 +541,590 @@ function initGsapAnimations() {
     }
   });
 }
+
+/* ==========================================================================
+   Children's Animated Playground Canvas
+   ========================================================================== */
+function initChildrenPlayground() {
+  const canvas = document.getElementById("children-playground");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  let width = canvas.width = canvas.parentElement.clientWidth;
+  let height = canvas.height = canvas.parentElement.clientHeight;
+
+  // Hill shape function
+  const getHillY = (x) => {
+    return height - 30 + Math.sin(x * 0.005) * 12 + Math.cos(x * 0.002) * 5;
+  };
+
+  // Handle Resize
+  window.addEventListener("resize", () => {
+    if (canvas.parentElement) {
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    }
+  });
+
+  // Particle Class for bursts
+  class BurstParticle {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 6;
+      this.vy = (Math.random() - 0.5) * 6 - 2;
+      this.size = Math.random() * 4 + 2;
+      this.color = color;
+      this.alpha = 1;
+      this.decay = Math.random() * 0.03 + 0.02;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += 0.1; // gravity
+      this.alpha -= this.decay;
+    }
+    draw(c) {
+      c.save();
+      c.globalAlpha = this.alpha;
+      c.fillStyle = this.color;
+      c.beginPath();
+      c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      c.fill();
+      c.restore();
+    }
+  }
+
+  // Floating Target Class (Letters, numbers, stars)
+  class FloatingTarget {
+    constructor(char, x, baseY, color) {
+      this.char = char;
+      this.x = x;
+      this.baseY = baseY;
+      this.y = baseY;
+      this.color = color;
+      this.floatAngle = Math.random() * Math.PI * 2;
+      this.floatSpeed = 0.03 + Math.random() * 0.02;
+      this.floatHeight = 15 + Math.random() * 10;
+    }
+    update() {
+      this.floatAngle += this.floatSpeed;
+      this.y = this.baseY + Math.sin(this.floatAngle) * this.floatHeight;
+    }
+    draw(c) {
+      c.save();
+      c.fillStyle = this.color;
+      c.shadowBlur = 8;
+      c.shadowColor = this.color;
+      c.font = "bold 20px 'Fredoka', sans-serif";
+      c.textAlign = "center";
+      c.textBaseline = "middle";
+      c.fillText(this.char, this.x, this.y);
+      c.restore();
+    }
+  }
+
+  // Bouncy Playground Ball
+  const ball = {
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    radius: 12,
+    color: "#FF7043", // sunset orange
+    active: false,
+    gravity: 0.35,
+    bounce: 0.72,
+    update() {
+      if (!this.active) return;
+      this.vy += this.gravity;
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Wall collisions
+      if (this.x - this.radius < 0) {
+        this.x = this.radius;
+        this.vx *= -this.bounce;
+      } else if (this.x + this.radius > width) {
+        this.x = width - this.radius;
+        this.vx *= -this.bounce;
+      }
+
+      // Ground collision
+      const groundY = getHillY(this.x);
+      if (this.y + this.radius >= groundY) {
+        this.y = groundY - this.radius;
+        this.vy = -this.vy * this.bounce;
+        // Friction on rolls
+        this.vx *= 0.98;
+        if (Math.abs(this.vy) < 0.8) this.vy = 0;
+        
+        // Spawn bounce dust/particles
+        if (Math.abs(this.vy) > 1.5) {
+          for (let i = 0; i < 5; i++) {
+            particles.push(new BurstParticle(this.x, groundY, "#26A69A"));
+          }
+        }
+      }
+    },
+    draw(c) {
+      if (!this.active) return;
+      c.save();
+      // Draw ball gradient
+      const grad = c.createRadialGradient(this.x - 3, this.y - 3, 2, this.x, this.y, this.radius);
+      grad.addColorStop(0, "#FFA500");
+      grad.addColorStop(0.4, "#FF7043");
+      grad.addColorStop(1, "#D84315");
+      c.fillStyle = grad;
+      c.beginPath();
+      c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      c.fill();
+      
+      // Draw beach/playground stripes
+      c.strokeStyle = "#FFFFFF";
+      c.lineWidth = 1.5;
+      c.beginPath();
+      c.arc(this.x, this.y, this.radius, -Math.PI*0.4, Math.PI*0.6);
+      c.stroke();
+      c.restore();
+    }
+  };
+
+  // Custom Child Class
+  class Child {
+    constructor(name, x, color, accessory) {
+      this.name = name;
+      this.x = x;
+      this.y = 0;
+      this.speed = 1.6 + Math.random() * 0.8;
+      this.color = color;
+      this.accessory = accessory; // 'helmet', 'cap', 'pigtails'
+      this.size = 13;
+      this.jumpY = 0;
+      this.jumpSpeed = 0;
+      this.isJumping = false;
+      this.runCycle = Math.random() * 10;
+      this.state = 'running'; // 'running', 'idle', 'jumping', 'waving'
+      this.waveCycle = 0;
+      this.direction = 1;
+      this.isWaving = false;
+      this.speechTimer = 0;
+      this.speechText = "";
+    }
+
+    update() {
+      // Waving behavior
+      if (this.isWaving) {
+        this.state = 'waving';
+        this.waveCycle += 0.25;
+        if (this.speechTimer > 0) this.speechTimer--;
+        return;
+      }
+
+      this.runCycle += 0.16;
+
+      // Choose path
+      let targetX = this.x;
+      if (ball.active) {
+        targetX = ball.x;
+      } else if (targets.length > 0) {
+        let closest = targets[0];
+        let minDist = Math.abs(targets[0].x - this.x);
+        for (let t of targets) {
+          let d = Math.abs(t.x - this.x);
+          if (d < minDist) {
+            minDist = d;
+            closest = t;
+          }
+        }
+        targetX = closest.x;
+      }
+
+      // Move
+      const dist = targetX - this.x;
+      if (Math.abs(dist) > 12) {
+        this.direction = Math.sign(dist);
+        this.x += this.direction * this.speed;
+        this.state = 'running';
+      } else {
+        this.state = 'idle';
+      }
+
+      // Bound within screen
+      if (this.x < 20) this.x = 20;
+      if (this.x > width - 20) this.x = width - 20;
+
+      // Ground height
+      this.y = getHillY(this.x);
+
+      // Jumping
+      if (this.isJumping) {
+        this.jumpY += this.jumpSpeed;
+        this.jumpSpeed += 0.55; // gravity
+        if (this.jumpY >= 0) {
+          this.jumpY = 0;
+          this.isJumping = false;
+          this.jumpSpeed = 0;
+        }
+      } else {
+        // Decide to jump
+        if (ball.active && Math.abs(ball.x - this.x) < 22 && ball.y < this.y - 15) {
+          this.jump();
+        } else {
+          for (let t of targets) {
+            if (Math.abs(t.x - this.x) < 28 && t.y < this.y - 12) {
+              this.jump();
+            }
+          }
+        }
+      }
+
+      if (this.speechTimer > 0) this.speechTimer--;
+    }
+
+    jump() {
+      if (!this.isJumping) {
+        this.isJumping = true;
+        this.jumpSpeed = -8 - Math.random() * 3;
+        this.state = 'jumping';
+        
+        // Random cute word
+        if (Math.random() < 0.35) {
+          this.say(Math.random() < 0.5 ? "Wheee!" : "Oops!");
+        }
+      }
+    }
+
+    say(text) {
+      this.speechText = text;
+      this.speechTimer = 90; // 1.5s at 60fps
+    }
+
+    draw(c) {
+      c.save();
+      c.translate(this.x, this.y + this.jumpY - 40); // Offset upwards so legs touch hill
+
+      // Body/Shirt
+      c.fillStyle = this.color;
+      c.beginPath();
+      c.moveTo(-7, 8);
+      c.lineTo(7, 8);
+      c.lineTo(5, 23);
+      c.lineTo(-5, 23);
+      c.closePath();
+      c.fill();
+
+      // Arms
+      c.strokeStyle = '#FFE082'; // Skin
+      c.lineWidth = 3.5;
+      c.lineCap = 'round';
+      if (this.state === 'waving') {
+        // wave left arm
+        c.beginPath();
+        c.moveTo(-4, 9);
+        c.lineTo(-9, 15);
+        c.moveTo(4, 9);
+        const waveX = 9 + Math.sin(this.waveCycle) * 3;
+        const waveY = -2 + Math.cos(this.waveCycle) * 2;
+        c.lineTo(waveX, waveY);
+        c.stroke();
+      } else {
+        // running arms
+        const swing = Math.sin(this.runCycle) * 6;
+        c.beginPath();
+        c.moveTo(-5, 9);
+        c.lineTo(-8 + swing * this.direction, 16 - swing * 0.2);
+        c.moveTo(5, 9);
+        c.lineTo(8 - swing * this.direction, 16 + swing * 0.2);
+        c.stroke();
+      }
+
+      // Pants/Legs
+      c.strokeStyle = '#3F51B5';
+      c.lineWidth = 3.8;
+      const legSwingL = Math.sin(this.runCycle) * 7;
+      const legSwingR = -Math.sin(this.runCycle) * 7;
+      
+      // Left leg
+      c.beginPath();
+      c.moveTo(-3, 23);
+      if (this.isJumping) {
+        c.lineTo(-4, 30);
+        c.lineTo(-1, 31);
+      } else {
+        c.lineTo(-3 + legSwingL, 33);
+      }
+      c.stroke();
+
+      // Right leg
+      c.beginPath();
+      c.moveTo(3, 23);
+      if (this.isJumping) {
+        c.lineTo(4, 30);
+        c.lineTo(7, 31);
+      } else {
+        c.lineTo(3 + legSwingR, 33);
+      }
+      c.stroke();
+
+      // Head
+      c.fillStyle = '#FFE082';
+      c.beginPath();
+      c.arc(0, 0, this.size, 0, Math.PI * 2);
+      c.fill();
+
+      // Eyes
+      c.fillStyle = '#1E1233';
+      const lx = this.direction * 2.5;
+      c.beginPath();
+      c.arc(lx - 2, -1, 1.2, 0, Math.PI * 2);
+      c.arc(lx + 2, -1, 1.2, 0, Math.PI * 2);
+      c.fill();
+
+      // Smile
+      c.strokeStyle = '#1E1233';
+      c.lineWidth = 1.2;
+      c.beginPath();
+      c.arc(lx, 2.5, 2.5, 0, Math.PI);
+      c.stroke();
+
+      // Accessories
+      if (this.accessory === 'helmet') {
+        // Red safety helmet
+        c.fillStyle = '#FF7043';
+        c.beginPath();
+        c.arc(0, -3, 14.5, Math.PI, 0);
+        c.fill();
+        c.strokeStyle = '#FF7043';
+        c.lineWidth = 1.2;
+        c.beginPath();
+        c.moveTo(-13, -3);
+        c.lineTo(-3, 10);
+        c.lineTo(3, 10);
+        c.lineTo(13, -3);
+        c.stroke();
+      } else if (this.accessory === 'cap') {
+        // Green sports cap
+        c.fillStyle = '#26A69A';
+        c.beginPath();
+        c.arc(0, -3, 14, Math.PI, 0);
+        c.fill();
+        c.beginPath();
+        c.ellipse(this.direction * 8, -4, 10, 2.5, this.direction * 0.1, 0, Math.PI * 2);
+        c.fill();
+      } else if (this.accessory === 'pigtails') {
+        // Cute hair bows & pigtails
+        c.fillStyle = '#8B4513';
+        c.beginPath();
+        c.arc(0, -2, 14, Math.PI, 0);
+        c.fill();
+        c.beginPath();
+        c.arc(-13, -3, 5, 0, Math.PI*2);
+        c.arc(13, -3, 5, 0, Math.PI*2);
+        c.fill();
+        c.fillStyle = '#FF7043';
+        c.fillRect(-15, -5, 4, 3);
+        c.fillRect(11, -5, 4, 3);
+      }
+
+      // Speech bubble
+      if (this.speechTimer > 0) {
+        c.restore();
+        c.save();
+        c.translate(this.x, this.y + this.jumpY - 95);
+        c.fillStyle = "#FFFFFF";
+        c.strokeStyle = "#7C4DFF";
+        c.lineWidth = 1.5;
+        c.beginPath();
+        c.roundRect(-30, -18, 60, 24, 8);
+        c.fill();
+        c.stroke();
+        
+        // Draw speech bubble tail pointing to head
+        c.beginPath();
+        c.moveTo(-6, 6);
+        c.lineTo(0, 14);
+        c.lineTo(6, 6);
+        c.closePath();
+        c.fill();
+        c.stroke();
+        
+        c.fillStyle = "#1E1233";
+        c.font = "12px 'Fredoka', sans-serif";
+        c.textAlign = "center";
+        c.textBaseline = "middle";
+        c.fillText(this.speechText, 0, -6);
+        c.restore();
+        c.save(); // restore state for final pop
+      }
+
+      c.restore();
+    }
+  }
+
+  // Instantiate objects
+  const children = [
+    new Child("Leo", width * 0.25, "#FF7043", "helmet"),    // Sunset Orange T-shirt & helmet
+    new Child("Mia", width * 0.5, "#7C4DFF", "pigtails"),   // Neon Violet T-shirt & pigtails
+    new Child("Ollie", width * 0.75, "#00E5FF", "cap")      // Electric Cyan T-shirt & cap
+  ];
+
+  const targets = [
+    new FloatingTarget("A", width * 0.2, height * 0.45, "#00E5FF"),
+    new FloatingTarget("B", width * 0.4, height * 0.35, "#FDD835"),
+    new FloatingTarget("C", width * 0.6, height * 0.4, "#FF7043"),
+    new FloatingTarget("1", width * 0.8, height * 0.35, "#7C4DFF")
+  ];
+
+  const particles = [];
+
+  // Drop bouncy ball on click
+  canvas.addEventListener("click", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    ball.x = clickX;
+    ball.y = clickY;
+    ball.vx = (Math.random() - 0.5) * 8;
+    ball.vy = -4;
+    ball.active = true;
+
+    // Sparkles at drop point
+    for (let i = 0; i < 8; i++) {
+      particles.push(new BurstParticle(clickX, clickY, "#FFD700"));
+    }
+
+    // Children call out!
+    const randomChild = children[Math.floor(Math.random() * children.length)];
+    const callouts = ["Look, a ball!", "Pass it here!", "Bouncy ball! ⚽"];
+    randomChild.say(callouts[Math.floor(Math.random() * callouts.length)]);
+  });
+
+  // Track hover to wave hands
+  canvas.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+
+    children.forEach(child => {
+      if (Math.abs(child.x - mouseX) < 45) {
+        if (!child.isWaving) {
+          child.isWaving = true;
+          child.say(Math.random() < 0.5 ? "Hello! 👋" : "Hi there!");
+        }
+      } else {
+        child.isWaving = false;
+      }
+    });
+  });
+
+  // Main Loop
+  function loop() {
+    // Clear and fill transparent/dark gradient
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw Hill grass base
+    ctx.save();
+    const hillGradient = ctx.createLinearGradient(0, height - 40, 0, height);
+    hillGradient.addColorStop(0, "#26A69A"); // Emerald Mint top
+    hillGradient.addColorStop(1, "#1B7E74"); // dark green bottom
+    ctx.fillStyle = hillGradient;
+    
+    ctx.beginPath();
+    ctx.moveTo(0, height);
+    for (let x = 0; x <= width; x += 5) {
+      ctx.lineTo(x, getHillY(x));
+    }
+    ctx.lineTo(width, height);
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw grass highlights / blades randomly
+    ctx.strokeStyle = "#80CBC4";
+    ctx.lineWidth = 2;
+    for (let x = 30; x < width - 10; x += 110) {
+      const hillY = getHillY(x);
+      ctx.beginPath();
+      ctx.moveTo(x, hillY);
+      ctx.lineTo(x - 3, hillY - 8);
+      ctx.moveTo(x + 5, hillY);
+      ctx.lineTo(x + 8, hillY - 10);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Update & draw targets
+    targets.forEach(target => {
+      target.update();
+      target.draw(ctx);
+    });
+
+    // Update & draw ball
+    ball.update();
+    ball.draw(ctx);
+
+    // Update & draw children
+    children.forEach(child => {
+      child.update();
+
+      // Collision with targets
+      targets.forEach(target => {
+        const headY = child.y + child.jumpY - 40; // head center height
+        const dist = Math.hypot(target.x - child.x, target.y - headY);
+        
+        // If close, trigger collision!
+        if (dist < 26) {
+          // Burst particles
+          for (let i = 0; i < 12; i++) {
+            particles.push(new BurstParticle(target.x, target.y, target.color));
+          }
+          // Move target somewhere else
+          target.x = 40 + Math.random() * (width - 80);
+          target.baseY = height * 0.35 + Math.random() * (height * 0.15);
+          target.floatAngle = Math.random() * Math.PI * 2;
+
+          // Cute reactions
+          child.say(Math.random() < 0.5 ? "Got it! ⭐" : "Hooray!");
+        }
+      });
+
+      // Collision child head and ball
+      if (ball.active) {
+        const headY = child.y + child.jumpY - 40;
+        const distToBall = Math.hypot(ball.x - child.x, ball.y - headY);
+        
+        if (distToBall < child.size + ball.radius + 4) {
+          // Headbutt/Kick physics!
+          ball.vy = -6.5 - Math.random() * 3.5;
+          ball.vx = child.direction * (2 + Math.random() * 3) + (Math.random() - 0.5) * 2;
+          
+          // Spawn collision sparkles
+          for (let i = 0; i < 8; i++) {
+            particles.push(new BurstParticle(ball.x, ball.y, ball.color));
+          }
+
+          child.say(Math.random() < 0.5 ? "Kick! ⚽" : "BAM!");
+        }
+      }
+
+      child.draw(ctx);
+    });
+
+    // Update & draw particles
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      if (p.alpha <= 0) {
+        particles.splice(i, 1);
+      } else {
+        p.draw(ctx);
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  // Start loop
+  loop();
+}
+
