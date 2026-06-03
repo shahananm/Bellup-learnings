@@ -57,7 +57,7 @@ html {
 }
 
 body, p, span, h1, h2, h3, h4, h5, h6, div, section, header, footer, img {
-  cursor: url('assets/toy_scooter_cursor.svg') 16 20, auto;
+  cursor: url('assets/school_bus.svg') 26 16, auto;
 }
 
 body {
@@ -2357,7 +2357,7 @@ h1, h2, h3, h4 {
   height: 100%;
 }
 
-/* Mobile-only scooter cursor display and tap highlight reset */
+/* Mobile-only school bus cursor display and tap highlight reset */
 .mobile-only-cursor {
   display: none;
 }
@@ -2368,12 +2368,12 @@ h1, h2, h3, h4 {
     position: absolute;
     width: 48px;
     height: 48px;
-    background-image: url('assets/toy_scooter_cursor.svg');
+    background-image: url('assets/school_bus.svg');
     background-size: contain;
     background-repeat: no-repeat;
     pointer-events: none;
     z-index: 10000;
-    transform: translate(-16px, -20px); /* Align with scooter handlebar hotspot (16,20) */
+    transform: translate(-39px, -24px); /* Align with school bus windshield hotspot (26,16) at 48px size */
     opacity: 0;
     transition: opacity 0.2s ease;
   }

@@ -147,9 +147,12 @@ function createSmokePuff(x, y) {
   const puff = document.createElement("div");
   puff.classList.add("smoke-puff");
 
-  // Offset to match the exhaust of the scooter cursor (which is at +22px X and +14px Y relative to the hotspot)
-  const xOffset = 22 + (Math.random() * 4 - 2); // add minor jitter
-  const yOffset = 14 + (Math.random() * 4 - 2);
+  const isMobile = window.innerWidth < 768;
+  // School bus exhaust: back left of the bus.
+  // Desktop hotspot at (26, 16), back exhaust at (2, 21) => dx = -24, dy = 5
+  // Mobile scales it to 48px (1.5x) => dx = -36, dy = 8
+  const xOffset = (isMobile ? -36 : -24) + (Math.random() * 4 - 2);
+  const yOffset = (isMobile ? 8 : 5) + (Math.random() * 4 - 2);
   puff.style.left = `${x + xOffset}px`;
   puff.style.top = `${y + yOffset}px`;
 
@@ -167,7 +170,7 @@ function createSmokePuff(x, y) {
 }
 
 /* ==========================================================================
-   Mobile Touch Cursor Tracker (Child on Scooter with Helmet)
+   Mobile Touch Cursor Tracker (School Bus)
    ========================================================================== */
 function initMobileCursorTouchTracker() {
   const mobileCursor = document.getElementById("mobile-scooter-cursor");
