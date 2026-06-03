@@ -985,16 +985,38 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
 }
 
+.quiz-option-btn:focus,
+.quiz-option-btn:active {
+  outline: none;
+  background: rgba(124, 77, 255, 0.15) !important;
+  border-color: var(--primary-light) !important;
+  color: var(--text-white) !important;
+}
+
 .quiz-option-btn.correct-choice {
-  background: rgba(38, 166, 154, 0.2);
-  border-color: var(--accent-mint);
-  color: var(--text-white);
+  background: rgba(38, 166, 154, 0.3) !important;
+  border-color: var(--accent-mint) !important;
+  color: var(--text-white) !important;
+}
+
+.quiz-option-btn.correct-choice:focus,
+.quiz-option-btn.correct-choice:active,
+.quiz-option-btn.correct-choice:hover {
+  background: rgba(38, 166, 154, 0.4) !important;
+  border-color: var(--accent-mint) !important;
 }
 
 .quiz-option-btn.wrong-choice {
-  background: rgba(255, 112, 67, 0.2);
-  border-color: var(--secondary-color);
-  color: var(--text-white);
+  background: rgba(255, 112, 67, 0.3) !important;
+  border-color: var(--secondary-color) !important;
+  color: var(--text-white) !important;
+}
+
+.quiz-option-btn.wrong-choice:focus,
+.quiz-option-btn.wrong-choice:active,
+.quiz-option-btn.wrong-choice:hover {
+  background: rgba(255, 112, 67, 0.4) !important;
+  border-color: var(--secondary-color) !important;
 }
 
 /* Success Screen */
